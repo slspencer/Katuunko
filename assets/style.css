@@ -1,1 +1,16 @@
+@import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+@import "../node_modules/bulma/sass/utilities/_all.sass";
+@import "../node_modules/bulma/sass/base/_all.sass";
+@import "../node_modules/bulma/sass/components/navbar.sass";
 
+.column {
+    border: solid black 1px;
+}
+.column p {
+    background-color: turquoise;
+    color: white;
+}
+
+.container-style {
+    background-color:whitesmoke;
+}
