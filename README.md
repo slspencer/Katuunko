@@ -4,20 +4,27 @@ Module 07 Project 1
 
 ## User Story
 '''
-AS A user
-I WANT to be able to see the lyrics AND hear the song im singing
-SO THAT i can sing karaoke with my friends
+AS A traveler
+I WANT to see available atraction options in new city as well as curent Covid-19 situation in that city 
+SO THAT i can choose whether to travel in that specific place or not and then create the list of things to do 
 
 ## Acceptance Criteria
 GIVEN a landing page
-WHEN i search for a song
-THEN i am presented with a selection of videos to choose from
-WHEN i choose a video
-THEN i am presented with the lyrics to my chosen song and the song begins
+WHEN i search for a city
+THEN i am presented with a covid-19 data
+WHEN when i select that city 
+THEN it stores in the local storage 
+THEN i presented with the atractions 
+WHEN i select some of the atractions 
+THEN selected atractions are saved to the list in local storage
+WHEN i return to the app 
+THEN i can select a saved list to see the atrractions
+
+
 
 ## APIS
-MusixMatch Lyrics API
-https://developer.musixmatch.com/documentation
-Youtube API
-https://developers.google.com/youtube
+Covid ActNow API
+https://apidocs.covidactnow.org/#current-data-for-all-states-counties-or-metros
+Yelp fusion API 
+https://fusion.yelp.com/
 
