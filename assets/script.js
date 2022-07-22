@@ -1,8 +1,6 @@
 let key = "349b5d4f748e4aa2bc08f7a7d16f32a3";
 let fetchButton = document.getElementById("fetch-button");
 
-// let urlCovidData = "https://api.covidactnow.org/v2/cbsa/{cbsa_code}.json?apiKey=YOUR_KEY_HERE"/
-
 let metroArea = {
      "Abilene, TX": 10180,
      "Akron, OH":10420,
@@ -282,5 +280,4 @@ function getApi(){
       })
 
     }
-    
     fetchButton.addEventListener("click", getApi);
