@@ -1,0 +1,79 @@
+First draft of the program flow
+
+Local Storage:
+* myTrips is a .json file to store myTrips [{{ city: "Nashville" , state: "TN", attractions: {attraction: "Parthenon", attraction: "Music Row", attraction: "Exit Inn"}, {city: "Atlanta", state: "GA", attractions: {attraction: "MODA", attraction: "Piedmont Park", attraction: "Fox Theater", attraction: "DragonCon"}} }]
+* tempTrips starts as an empty .json file, if myList exists then tempList = myTrips
+* attractionList is a list created each time by the program (not local storage) of many attraction types
+
+0. SEARCH
+    *--- Get local storage, put in a temporary list 
+    Create empty tempList
+    Save myTrips to tempList if myTrips exists
+
+    *--- create attractionList
+    attractionList = [ "top restaurants", "museums", "hiking trails", "libraries", "monuments", "coffee shops", "music venues", "top conferences", "top sports events"] or similar to match YELP categories
+
+    *--- get user input
+    City, State, Button SUBMIT:         Enter a US city and state, click SUBMIT to call 1a-GET CITY & COVID DATA with this city, state
+    tempTrips City,State Dropdown menu: Select a tempTrips city, state to call 1a-GET CITY & COVID DATA with this city, state
+    Button EXIT:                        Call 4-CLEAR FIELDS
+
+#-------------------
+# Get & display City & COVID information, then user decides what to do
+1a-GET CITY & COVID DATA:
+
+    * --- get County Names
+    call (1b-GET COUNTY NAMES with City)
+
+    * ---get COVID Data
+    call (1c-GET COVID DATA with County Names)
+
+    * --- for each County Name, display COVID Data
+    for each County Name, create a div and display COVID Data
+
+    * --- let them decide if want to see attractions     
+    Button1: Show me the attractions in this city     (call 2a-GET ATTRACTIONS)
+    Button2: Nope, not right now                      (return to 0-SEARCH)
+   
+* --- Get the County Names
+1b-GET COUNTY NAMES with City
+    * Create:  the ? API search string with city
+    * Search:  the ? API with search string, and return County Results              
+    * return County Data
+
+* --- Get the COVID data
+1c-GET COVID DATA with County Names
+    * Create:  the COVID-19 API search string with counties                         
+    * Search:  the COVID-19 API with search string, and return COVID-19 results 
+    * return Covid Data  
+
+
+#-------------------
+# Get & display attraction information
+2a-GET ATTRACTIONS:
+    attractionList DropDown Menu:  if a click on a type calls -2b DISPLAY ATTRACTIONS-)
+    * Button2: Nope, changed my mind    (calls -4 CLEAR-)
+
+2b-DISPLAY ATTRACTIONS:
+    * Create: the YELP API search string with attractions
+    * Search: the YELP API for the city's top 5 attractions of that type, and returns results  /waits for attraction search string/
+    * Display col1: top 5 attractions of type for city, '+' favicon      /waits for attraction results/ (when '+' selected call -3a ADD ATTRACTION-) 
+    * Display col2: tempList items for city, with - icons /can be empty, scroll bar, display reverse order last item first/ (when '-' selected call -3b DELETE ATTRACTION-) 
+    * Button1: DONE  (returns to -2a GET ATTRACTION-)
+
+#---------------------
+# Update attractions
+3a. ADD ATTRACTION:
+    * Append: item to the attraction list in local storage 
+    * Append: item to the top of MyList in the DOM
+    * Returns to -2b DISPLAY ATTRACTIONS-
+3b. DELETE ATTRACTION:
+    * Delete: item from the attraction list in local storage
+    * Delete: item from MyList in the DOM
+    * Return to -2b DISPLAY ATTRACTIONS-
+
+#---------------------
+# Clear fields, reset app
+4. CLEAR:
+    * clear the Input field and MyList selection values
+    * returns to -0 SEARCH-
