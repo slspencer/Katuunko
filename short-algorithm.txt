@@ -1,0 +1,24 @@
+Local storage - 
+1. TODO lists for cities
+
+Internal variables - 
+1. temp TODO list
+to update & save to local storage
+2. Buttons or dropdown of attraction types 
+
+Program:
+1. User searches for the city, 
+    a. Search for cbsa code
+    b. EXIT
+
+2. With the city name, 
+   a. get & display COVID data
+   b. search & display local storage for existing city TODO list
+   
+3. User selects attraction type button or selects New Search button
+   a. if New City selected, clear COVID & TODO data, return to 1.
+   b. Search Yelp for that attraction type
+   c. display top 5 results for that attraction type
+   d. User selects attractions to add to TODO list (heart icon)
+   e.  Update TODO list with selections that have a red heart icon
+   f. When user clicks "SAVE TODO LIST", update local storage & return to city
