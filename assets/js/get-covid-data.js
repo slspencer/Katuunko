@@ -106,10 +106,10 @@ function getCovidData() {
 
         // display the covid data in the document
         const covidArray = [
-            ["CDC Community Level Risk: " ,communityLevel],
-            ["Transmission Level: " ,transmissionLevel],
-            ["Weekly new cases per 100K persons: " , weeklyNewCasesPer100K],
-            ["Percent Vaccinated: " ,vaccinationsCompletedRatio],
+            ["CDC Community Level Risk: " communityLevel],
+            ["Transmission Level: " transmissionLevel],
+            ["Weekly new cases per 100K persons: "  weeklyNewCasesPer100K],
+            ["Percent Vaccinated: " vaccinationsCompletedRatio],
         ]
         
         // we'll write the data to this container
