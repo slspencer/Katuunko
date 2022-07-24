@@ -5,11 +5,10 @@
             <meta name="viewport" content="width=device-width, initial-scale=1">
             <title>Hello Bulma!</title>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+            <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
             <link rel="stylesheet" href="./assets/style.css">
         </head>
         <body>
-        <!-- Bulmar starter template -->
-
         <section class="hero has-background-primary">
             <div class="hero-body">
                 <p class="title">
@@ -18,6 +17,7 @@
                 <p class="subtitle">
                     Hero subtitle
                 </p>
+                <div class="savedTrips" id="my-trips">myTrips</div>
                 </div>
             </section>
         
@@ -51,6 +51,7 @@
             </div>
 
         </section>
+        <!-- city search bar -->
         <div class="container intro-container">
             <div class="row">
                 <div class="column is-one-third">
@@ -58,7 +59,7 @@
                     <div class="card">
             <div class="card-header-title">Search for a city</div>
             <div class="card-body">
-                <input type="textarea" class="is-fluid" placeholder="Enter your city" area-label="enter a city name" aria-describedby="search button">
+                <input type="textarea" class="is-fluid" id="city-search" placeholder="Enter your city" area-label="enter a city name" aria-describedby="search button">
     
                 <btn class="button is-small is-info is-outlined" id="fetch-button">Search
                 </btn>
@@ -70,6 +71,7 @@
     </div>
     </div>
     </div>
+    <!-- covid info dispaly container -->
         <div class="container"></div>
         <div class="card-header-title mt-6 has-text-centered">Covid-19 info</div>
         <div class="card-content" id="covid-info"> 
@@ -78,9 +80,78 @@
     
         </div>
     </div>
+    <div class="dropdown menu "></div>
+
+    <div class="column is-two-third">
+        <div class="card">Local attractions</div>
+        <div class="card-bodyAttractions"></div>
+        <ul id = "atractions list"></ul>
+    </div>
+     <!-- Dropdown atractions menu -->
     
+    <div class="dropdown is-hoverable">
+        <div class="dropdown-trigger">
+          <button class="button is-outlined is-info"  id="dropDown" aria-haspopup="true" aria-controls="dropdown-menu">
+            <span>See available attractions</span>
+            <span class="icon is-small">
+              <i class="fa fa-angle-down" aria-hidden="true"></i>
+            </span>
+          </button>
+        </div>
+        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+          <div class="dropdown-content">
+            <a href="#" class="dropdown-item">
+              Reastaurants
+            </a>
+            <hr class="dropdown-divider">
+            <a href="#" class="dropdown-item">
+              Bars
+            </a>
+            <hr class="dropdown-divider">
+            <a href="#" class="dropdown-item">
+              Night life 
+            </a>
+            <hr class="dropdown-divider">
+            <a href="#" class="dropdown-item">
+              Shopping
+            </a>
+        <a>
+        <hr class="dropdown-divider">
+        <a href="#" class="dropdown-item">
+          Gyms
+        </a>
+        <a>
+            <hr class="dropdown-divider">
+            <a href="#" class="dropdown-item">
+              Massage
+            </a>
+            <a>
+                <hr class="dropdown-divider">
+                <a href="#" class="dropdown-item">
+                 Dry cleaning
+                </a>
+                <a>
+                    <hr class="dropdown-divider">
+                    <a href="#" class="dropdown-item">
+                     Hair-salons
+                    </a>
+                    <a>
+                        <hr class="dropdown-divider">
+                        <a href="#" class="dropdown-item">
+                         Towing
+                        </a>
+                        <a>
+                            <hr class="dropdown-divider">
+                            <a href="#" class="dropdown-item">
+                             Delivery
+                            </a>
+          </div>
+        </div>
+      </div>
+
     </body>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-       <script type="text/javascript" src="./assets/script.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="./assets/script.js"></script>
 
 </html>

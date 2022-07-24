@@ -1,5 +1,9 @@
-let key = "349b5d4f748e4aa2bc08f7a7d16f32a3";
+let keyCovid = "349b5d4f748e4aa2bc08f7a7d16f32a3";
+let keyYelp = "UMaUHyuWvjH1IKm-CgxmwdG92WrPULR3PJg4EVKBTR5UYhvQmdSjr4XBtUx2l6aVOp4skgB9KkKBDDEi6R4OgcWUl38hsH3nYrlBku6MmjIFvY4nfKEZqYpdmHzcYnYx";
 let fetchButton = document.getElementById("fetch-button");
+let searchCity = ("#city-search");
+let attractionList = ["restaurants","bars","nightlife","shopping","gyms","massage","dry cleaning","hair salons","towing","delivery"];
+let myTtrips= document.getElementById("my-trips");
 
 let metroArea = {
      "Abilene, TX": 10180,
@@ -264,8 +268,47 @@ let metroArea = {
      "Yuma, AZ":49740
 }
 
+// csbaObj = { "Metro area": 1234 }
+// csbaArr = []
+// csbaKeys = Object.keys(csbaObj)
+// Use csbaKeys to loop through all metro areas
+//   - for each iteration, push object of this shape -> { label: x, value: y }, into csbaArr
+
+
+//  let keys = Object.keys(metroArea);
+//  console.log (keys);
+
+//  let vals = Object.values(metroArea);
+//  console.log (vals);
+
+//  for ( i = 0; i < vals.length; i++) {
+//     console.log (i, [vals[i]]);
+//      }
+//  for ( i = 0; i < keys.length; i++) {
+// console.log (i, [keys[i]]);
+//  }
+
+//  var arr = [];
+
+//  for (i = 0; i < keys.length; i++) {
+//      arr.push ({
+//         label:keys[i],value: metroArea [keys[i]]
+//     });
+//  }
+
+
+
+//  $(function() {
+//     var arr = [
+
+//     ];
+//     searchCity.autocomplete({
+//       source: arr
+//     });
+//     });
+
 function getApi(){
-    var requestUrl="https://api.covidactnow.org/v2/cbsa/24580.json?apiKey="+key;
+ var requestUrl="https://api.covidactnow.org/v2/cbsa/49740.json?apiKey="+key;
 
     fetch(requestUrl)
     .then(function(response){
@@ -276,8 +319,19 @@ function getApi(){
 
         $(".card-content").addClass("casesRow"); 
         $(".card-content").addClass("vaccinationsRow");
-
-      })
+    
+    })
 
     }
     fetchButton.addEventListener("click", getApi);
+
+    let dropdownBtn = document.querySelector('#dropDown');
+let menuContent = document.querySelector('#dropdown-menu');
+dropdownBtn.addEventListener("click",()=>{
+   if(menuContent.style.display===""){
+      menuContent.style.display="block";
+   } else {
+      menuContent.style.display="";
+   }
+})
+ 
