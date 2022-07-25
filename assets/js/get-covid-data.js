@@ -17,9 +17,12 @@ let vaccinationsCompletedRatio = "unknown";
 
 //----------------------------------
 // API keys
-// const keyCovid = "349b5d4f748e4aa2bc08f7a7d16f32a3";
+const keyCovid = "349b5d4f748e4aa2bc08f7a7d16f32a3"; //uncommented b/c values are not shared b/w scripts
 // ^ commented because its already defined in script.js, will remove once the two are merged
+
+// temporary city values until city search is completed
 var keyCity    = "49740";
+var nameCity = "Yuma, AZ";
 
 // search string Urls
 // var requestCovidUrl="https://api.covidactnow.org/v2/cbsa/" + keyCity + ".json?apiKey=" + keyCovid;
@@ -27,6 +30,7 @@ var requestCovidUrl ="https://api.covidactnow.org/v2/cbsa/49740.json?apiKey=349b
 
 console.log("keyCovid = ", keyCovid);
 console.log("keyCity = ", keyCity);
+console.log("nameCity = ", nameCity);
 console.log("requestCovidURL = ", requestCovidUrl);
 
 //----------------------------------
@@ -114,6 +118,7 @@ function getCovidData() {
         ]
         
         // we'll write the data to this container
+        let covidCity = document.getElementById('city-search');
         let covidContainer = document.getElementById('display-covid-data');
         
         // create the unordered list
@@ -126,16 +131,18 @@ function getCovidData() {
             var li = document.createElement('li');
 
             li.innerHTML = covidArray[i];
-            covidDataList.appendChild(li);
+            covidDataList.appendChild(li); // add item to the covid data list
 
             console.log("li = ", li);
         }
 
 
-
+        console.log("covid city =", covidCity);
         console.log("covid display list =", covidDataList);
 
-        // append the list to the container
+        // display the covid city name in the DOM
+        covidCity.value = nameCity;       
+        // display the covid data list in the DOM
         covidContainer.appendChild(covidDataList);
 
     })
@@ -143,8 +150,17 @@ function getCovidData() {
 } // end getCovidData
 
 
+
 //----------------------------------
 // event listeners go here
+
+// temporary until we have a city search funtion
+$(document).ready(function() {
+     // fill in the Search City button (#get-covid-button) with the cityName value from above
+    var elem = document.getElementById("city-search");
+    elem.value = nameCity;
+}); // on load, 
+
 
 getCovidButton.addEventListener("click", getCovidData() );
 
