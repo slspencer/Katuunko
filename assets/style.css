@@ -11,3 +11,7 @@
 .container-style {
     background-color:whitesmoke;
 }
+
+.border {
+    border: solid black 1px;
+}
