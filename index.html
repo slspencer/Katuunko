@@ -12,121 +12,121 @@
             <link rel="stylesheet" href="./assets/style.css">
         </head>
         <body>
-        <!-- hero -->
+            <!-- hero -->
             <section class="hero has-background-primary mb-3">
-            <div class="hero-body p-5">
-                <h1 class="title">
-                    Covid Stats/Yelp Results
-                </h1>
-                <h2><a href="https://covidactnow.org/">Attribution: Covid Act Now</a></h2>
-                <p class="subtitle">
-                    This program is designed to help you make responsible travel plans by displaying COVID-19 statistics, for a given area, side by side with attractions suggested by Yelp.
-                </p>
-            </section>
-            <!-- end hero -->
-            <section class="columns">
+                <div class="hero-body p-5">
+                    <h1 class="title">
+                        Covid Stats/Yelp Results
+                    </h1>
+                    <h2><a href="https://covidactnow.org/">Attribution: Covid Act Now</a></h2>
+                    <p class="subtitle">
+                        This program is designed to help you make responsible travel plans by displaying COVID-19 statistics, for a given area, side by side with attractions suggested by Yelp.
+                    </p>
+                </div> <!-- end hero-body -->
+            </section> <!-- end hero -->
+
             <!-- covid section -->
-            <section class="column is-one-third">
-                <div class="card">
-                    <h3 class="card-header-title">Search for a city</h3>
-                    <div class="card-body">
-                        <input type="textarea" class="is-fluid ml-3" id="city-search" placeholder="Enter your city" area-label="enter a city name" aria-describedby="search button">
-    
-                        <btn class="button is-small is-info is-outlined" id="get-covid-button">Search
-                        </btn>
-                    </div>
-                </div>
-                <!-- covid info dispaly container -->
-                <h3 class="card-header-title  m-1 mt-3 p-3">Covid-19 Statistics</h3>
-                <p class="card-content p-4 is-primary" id="display-covid-data">
-                    
-                </p>
-                <div class="container">
-                    <div class="savedTrips" id="my-trips">
-                    <h4 class="card-header-title">Saved Trips</h4>
-                    </div>
-                </div>
+            <section class="columns">
+
+                <section class="column is-one-third">
+                    <div class="card">
+                        <h3 class="card-header-title">Search for a city</h3>
+                        <div class="card-body">
+                            <input type="textarea" class="is-fluid ml-3" id="city-search" placeholder="Enter your city" area-label="enter a city name" aria-describedby="search button">
+        
+                            <btn class="button is-small is-info is-outlined" id="get-covid-button">Search
+                            </btn> 
+                        </div> <!-- end card-body -->
+                    </div> <!-- end card -->
+                    <!-- covid info dispaly container -->
+                    <h3 class="card-header-title  m-1 mt-3 p-3">Covid-19 Statistics</h3>
+                    <p class="card-content p-4 is-primary" id="display-covid-data">
+                    </p>
+                    <div class="container">
+                        <div class="savedTrips" id="my-trips">
+                            <h4 class="card-header-title">Saved Trips</h4>
+                        </div> <!-- end saved Trips -->
+                    </div> <!-- end container -->
+                </section> <!-- end column one-third -->
+
+                <section class="column is-two-thirds">
                 
-            </div>
-        </section>
-        <section class="column is-two-thirds">
-            
-            <div class="dropdown menu"></div>
-            
-            <div class="column">
-                <div class="card">Local attractions</div>
-                <div class="card-bodyAttractions"></div>
-                <ul id = "atractions list"></ul>
-            </div>
-            <!-- Dropdown atractions menu -->
-            
-            <div class="dropdown is-hoverable">
-                <div class="dropdown-trigger">
-                    <button class="button is-outlined is-info"  id="dropDown" aria-haspopup="true" aria-controls="dropdown-menu">
-                        <span>
-                            See available attractions
-                        </span>
-                        <span class="icon is-small">
-                            <i class="fa fa-angle-down" aria-hidden="true"></i>
-                        </span>
-                    </button>
-                </div>
-                <div class="dropdown-menu" id="dropdown-menu" role="menu">
-                    <div class="dropdown-content">
-                        <a href="#" class="dropdown-item">
-                            Reastaurants
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item">
-                            Bars
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item">
-                            Night life 
-                        </a>
-                        <hr class="dropdown-divider">
-                        <a href="#" class="dropdown-item">
-                            Shopping
-                        </a>
-                        <a>
-                            <hr class="dropdown-divider">
-                            <a href="#" class="dropdown-item">
-                                Gyms
-                            </a>
-                            <a>
+                    <div class="dropdown menu"></div>
+                    
+                    <div class="column">
+                        <div class="card">Local attractions</div>
+                        <div class="card-bodyAttractions"></div>
+                        <ul id = "atractions list"></ul>
+                    </div> <!-- end column -->
+    
+                    <!-- Dropdown atractions menu -->          
+                    <div class="dropdown is-hoverable">
+    
+                        <div class="dropdown-trigger">
+                            <button class="button is-outlined is-info"  id="dropDown" aria-haspopup="true" aria-controls="dropdown-menu">
+                                <span>
+                                    See available attractions
+                                </span>
+                                <span class="icon is-small">
+                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
+                                </span>
+                            </button>
+                        </div> <!-- end dropdown-trigger -->
+    
+                        <div class="dropdown-menu" id="dropdown-menu" role="menu">
+                            <div class="dropdown-content">
+                                <a href="#" class="dropdown-item">
+                                    Restaurants
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="#" class="dropdown-item">
+                                    Bars
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="#" class="dropdown-item">
+                                    Night life 
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="#" class="dropdown-item">
+                                    Shopping
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="#" class="dropdown-item">
+                                    Gyms
+                                </a>
                                 <hr class="dropdown-divider">
                                 <a href="#" class="dropdown-item">
                                     Massage
                                 </a>
-                                <a>
-                                    <hr class="dropdown-divider">
-                                    <a href="#" class="dropdown-item">
-                                        Dry cleaning
-                                    </a>
-                                    <a>
-                                        <hr class="dropdown-divider">
-                                        <a href="#" class="dropdown-item">
-                                            Hair-salons
-                                        </a>
-                                        <a>
-                                            <hr class="dropdown-divider">
-                                            <a href="#" class="dropdown-item">
-                                                Towing
-                                            </a>
-                                            <a>
-                                                <hr class="dropdown-divider">
-                                                <a href="#" class="dropdown-item">
-                                                    Delivery
-                                                </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </section>                           
-                                </body>
-                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-                                <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-                                <script type="text/javascript" src="./assets/script.js"></script>
-                                <script type="text/javascript" src="./assets/js/get-covid-data.js"></script>
+                                <hr class="dropdown-divider">
+                                <a href="#" class="dropdown-item">
+                                    Dry cleaning
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="#" class="dropdown-item">
+                                    Hair-salons
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="#" class="dropdown-item">
+                                    Towing
+                                </a>
+                                <hr class="dropdown-divider">
+                                <a href="#" class="dropdown-item">
+                                    Delivery
+                                </a>
+                            </div> <!-- end dropdown-content -->
+                        </div> <!-- end dropdown-menu -->
+                    </div> <!-- end dropdown-->
+
+                </section> <!-- end column two-thirds -->
+
+            </section> <!-- end columns-->
+
+        </body>
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script type="text/javascript" src="./assets/script.js"></script>
+        <script type="text/javascript" src="./assets/js/get-covid-data.js"></script>
                                 
-                                </html>
+    </html>
