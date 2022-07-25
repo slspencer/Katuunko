@@ -17,9 +17,10 @@ let vaccinationsCompletedRatio = "unknown";
 
 //----------------------------------
 // API keys
-// const keyCovid = "349b5d4f748e4aa2bc08f7a7d16f32a3";
+// const keyCovid = "349b5d4f748e4aa2bc08f7a7d16f32a3"; 
 // ^ commented because its already defined in script.js, will remove once the two are merged
 var keyCity    = "49740";
+var nameCity = "Yuma, AZ";
 
 // search string Urls
 // var requestCovidUrl="https://api.covidactnow.org/v2/cbsa/" + keyCity + ".json?apiKey=" + keyCovid;
@@ -143,8 +144,17 @@ function getCovidData() {
 } // end getCovidData
 
 
+
 //----------------------------------
 // event listeners go here
+
+// temporary until we have a city search funtion
+$(document).ready(function() {
+     // fill in the Search City button (#get-covid-button) with the cityName value from above
+    var elem = document.getElementById("get-covid-button");
+    elem.value = nameCity;
+}); // on load, 
+
 
 getCovidButton.addEventListener("click", getCovidData() );
 
