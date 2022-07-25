@@ -47,7 +47,6 @@ function getYelpData(nameCity, attractionType) {
     console.log("getYelpData");
 
     // Yelp API keys
-    // https://stackoverflow.com/questions/52213930/yelp-api-authorization-using-javascript
     let keyYelp = "7qt4F3KUoenfnF3fj3MIePnU5umDS8-nNdR_N5RAdXW32wrmEc1sqqEKUzIdWOsxLWXvX2DorGDvh-Kly-tVuHGJgj5EHWAkovEK6sCSi9cZjn2D56u8j4TksxDfYnYx";
     let clientID = "BExuXE5-5B7DgPVFe60ulw"; 
 
@@ -56,50 +55,80 @@ function getYelpData(nameCity, attractionType) {
     var yelpURL = "https://api.yelp.com/v3/categories/search?location=" + nameCity + "&categories=" + attractionType + "&limit=5";
     var queryURL = corsURL + yelpURL;
 
-    $.ajax({
-        url: queryURL,
-        method: 'GET',
-        headers: {
-            "accept": "application/json",
-            "x-requested-with": "xmlhttprequest",
-            "Access-Control-Allow-Origin": "*",
-            "Authorization": `Bearer ${keyYelp}`
-        },
+    // Next, we'll try this solution:
+    // https://github.com/NickShallee/yelp-api   
+    let yelpAPI = require('yelp-api');
 
-        dataType: 'json',
-        success: function(data){
-            // Grab the results from the API JSON return
-            var totalresults = data.total;
-            // If our results are greater than 0, continue
-            if (totalresults > 0){
-                // Display a header on the page with the number of results
-                $('#results').append('<h5>We discovered ' + totalresults + ' results!</h5>');
-                // Itirate through the JSON array of 'businesses' which was returned by the API
-                $.each(data.businesses, function(i, item) {
-                    // Store each business's object in a variable
-                    var id = item.id;
-                    var alias = item.alias;
-                    var phone = item.display_phone;
-                    var image = item.image_url;
-                    var name = item.name;
-                    var rating = item.rating;
-                    var reviewcount = item.review_count;
-                    var address = item.location.address1;
-                    var city = item.location.city;
-                    var state = item.location.state;
-                    var zipcode = item.location.zip_code;
+    // Create a new yelpAPI object with your API key
+    let apiKey = 'YOUR_API_KEY';
+    let yelp = new yelpAPI(apiKey);
 
-                    // Append our result into our page
-                    $('#results').append('<div id="' + id + '" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br>We found <b>' + name + '</b> (' + alias + ')<br>Business ID: ' + id + '<br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div>');
-                });
-            } else {
-                // If our results are 0; no businesses were returned by the JSON therefor we display on the page no results were found
-                $('#results').append('<h5>We discovered no results!</h5>');
-            }
-        }
-    });      
+    // Set any parameters, if applicable (see API documentation for allowed params)
+    let params = [{ location: '20008' }];
+
+    // Call the endpoint
+    yelp.query('businesses/search', params)
+    .then(data => {
+    // Success
+    console.log(data);
+    })
+    .catch(err => {
+    // Failure
+    console.log(err);
+    });
     
-}       
+    //-------------------------
+    // Yelp Fusion API doesn't allow javascript calls, so neither of these approaches will work:
+    // https://stackoverflow.com/questions/52213930/yelp-api-authorization-using-javascript
+    // https://medium.com/@sa.mehdisafari/use-yelp-fusion-api-without-cors-errors-9af47e98ac4a
+    // None of the following code works:
+
+
+    //$.ajax({
+    //    url: queryURL,
+    //    method: 'GET',
+    //    headers: {
+    //        "accept": "application/json",
+    //        "x-requested-with": "xmlhttprequest",
+    //        "Access-Control-Allow-Origin": "*",
+    //        "Authorization": `Bearer ${keyYelp}`
+    //    },
+
+    //    dataType: 'json',
+    //    success: function(data){
+    //        // Grab the results from the API JSON return
+    //        var totalresults = data.total;
+    //        // If our results are greater than 0, continue
+    //        if (totalresults > 0){
+    //            // Display a header on the page with the number of results
+    //            $('#results').append('<h5>We discovered ' + totalresults + ' results!</h5>');
+    //            // Itirate through the JSON array of 'businesses' which was returned by the API
+    //            $.each(data.businesses, function(i, item) {
+    //                // Store each business's object in a variable
+    //                var id = item.id;
+    //                var alias = item.alias;
+    //                var phone = item.display_phone;
+    //                var image = item.image_url;
+    //                var name = item.name;
+    //                var rating = item.rating;
+    //                var reviewcount = item.review_count;
+    //                var address = item.location.address1;
+    //                var city = item.location.city;
+    //                var state = item.location.state;
+    //                var zipcode = item.location.zip_code;
+
+    //                // Append our result into our page
+    //                $('#results').append('<div id="' + id + '" style="margin-top:50px;margin-bottom:50px;"><img src="' + image + '" style="width:200px;height:150px;"><br>We found <b>' + name + '</b> (' + alias + ')<br>Business ID: ' + id + '<br> Located at: ' + address + ' ' + city + ', ' + state + ' ' + zipcode + '<br>The phone number for this business is: ' + phone + '<br>This business has a rating of ' + rating + ' with ' + reviewcount + ' reviews.</div>');
+    //            });
+    //        } else {
+    //            // If our results are 0; no businesses were returned by the JSON therefor we display on the page no results were found
+    //            $('#results').append('<h5>We discovered no results!</h5>');
+    //        }
+    //    }
+    //}
+
+}   
+
 
 
 //----------------------------------
