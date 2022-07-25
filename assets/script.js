@@ -307,6 +307,12 @@ let metroArea = {
 //     });
 //     });
 
+
+
+
+
+
+
 function getApi(){
  var requestUrl="https://api.covidactnow.org/v2/cbsa/49740.json?apiKey="+key;
 
