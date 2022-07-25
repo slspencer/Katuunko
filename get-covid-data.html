@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+    <html>
+
+        <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <title>Get Covid Data</title>
+            <!-- Bulma -->
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+            <!-- JQuery-->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+            <!-- custom css -->
+            <link rel="stylesheet" href="./assets/style.css">
+        </head>
+
+        <body>
+
+            <!--top hero area-->
+            <section class="hero has-background-primary">
+                <div class="hero-body">
+                    <p>Hero Title
+                        <h4><a href="https://covidactnow.org/">Attribution: Covid Act Now</a></h4>
+                    </p>
+                </div>
+            </section><!--end hero-->
+            <br/>
+            <!-- Search for Covid Data -->
+            <form class="control">
+                <button class="button is-primary" id="get-covid-button" >Get Covid Data</button>
+            </form> <!-- end control -->
+
+            <section class="box">
+
+                <div class="columns is-mobile is-centered"> <!-- columns is one line-->
+
+                    <div class="column"> <!-- column is 'auto width'-->
+                        <p class="is-primary" id="display-covid-data">
+                            <!-- dynamic covid data will go here -->
+                        </p>
+                    </div> <!-- end col-3 -->
+
+                </div><!--end columns-->
+
+            </section> <!-- end box -->
+
+            <!--javascript goes before the </body> tag-->
+
+            <!--custom .js-->
+            <script type="text/javascript" src="./assets/js/get-covid-data.js"></script>
+            
+
+        </body>
+
+</html>
