@@ -15,11 +15,11 @@
             <section class="hero has-background-primary mb-3">
                 <div class="hero-body p-5">
                     <h1 class="title">
-                        Covid Stats/Yelp Results
+                        Covid Stats/Kayak Planner
                     </h1>
                     <h2><a href="https://covidactnow.org/">Attribution: Covid Act Now</a></h2>
                     <p class="subtitle">
-                        This program is designed to help you make responsible travel plans by displaying COVID-19 statistics, for a given area, side by side with attractions suggested by Yelp.
+                        This program is designed to help you make responsible travel plans by displaying COVID-19 statistics, for a given area, side by side with flight and hotel bookings via KAYAK.
                     </p>
                 </div> <!-- end hero-body -->
             </section> <!-- end hero -->
@@ -29,7 +29,7 @@
 
                 <section class="column is-two-thirds">
                     <div class="card">
-                        <h3 class="card-header-title">Search for a city</h3>
+                        <h3 class="card-header-title is-centered">Search for a city</h3>
                         <div class="card-body">
                             <input type="textarea" class="is-fluid ml-3" id="city-search" placeholder="Enter your city" area-label="enter a city name" aria-describedby="search button">
         
@@ -48,10 +48,10 @@
                     </div> <!-- end container -->
                 </section> <!-- end column one-third -->
 
-                <section class="column is-one-half">
+                <section class="column is-one-third">
                         <div class="card">
-                            <h3 class="card-header-title">Local Attractions</h3>
-                            <!-- KAYAK example embed -->
+                            <h3 class="card-header-title is-centered">Hotels and Flights via KAYAK</h3>
+                            <!-- KAYAK example embed -->   
                             <div style="height:500px;width: 500px;">
                                 <div id="kayakSearchWidgetContainer"></div>
                                 </div>
@@ -74,16 +74,15 @@
                                 cc: "us",
                                 mc: "EUR"
                                 });
-                                </script> 
+                                </script>
+                                </div>
+                            </div> 
                                 <!-- end KAYAK embed -->
-                        </div> <!-- end card -->
-                    </section> <!-- enc column one-half -->
+                </section> 
+                <!-- end column one-third -->
+                <!-- end columns-->
 
-                </section> <!-- end column two-thirds -->
-
-            </section> <!-- end columns-->
-
-            <p>Date: <input type="text" id="datepicker"></p>
+            <!-- <p>Date: <input type="text" id="datepicker"></p> -->
 
         </body>
 
