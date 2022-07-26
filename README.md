@@ -4,25 +4,29 @@ View live at [https://slspencer.github.io/Katuunko/index.html](https://slspencer
 
 ## Description
 
+Web page provide user with information about Covid-19 data in selected metropolitan areas, and the opportunity to select the flights and the hotels for that area. Developed web page uses data from 2 separate API: Kayak and Covid Act Now. Searched trips are saved in local storage and rendered on the front page. Structure and styling of the page were developed using Bulma CSS Framework
+
+
 ## Screenshot/Video
 
 ## User Story
 '''
 AS A traveler
-I WANT to see available atraction options in new city as well as curent Covid-19 situation in that city 
-SO THAT i can choose whether to travel in that specific place or not and then create the list of things to do 
-
+I WANT to see available curent Covid-19 data in chosen city 
+SO THAT i can choose whether to travel in that specific place or not.
+I Want to be abble to search flights and hotels in that city
+SO THAT i can see the best available options 
 ## Acceptance Criteria
 GIVEN a landing page
 WHEN i search for a city
 THEN i am presented with a covid-19 data
-WHEN when i select that city 
+WHEN i select that city 
 THEN it stores in the local storage 
-THEN i presented with the atractions 
-WHEN i select some of the atractions 
-THEN selected atractions are saved to the list in local storage
-WHEN i return to the app 
-THEN i can select a saved list to see the atrractions
+WHEN i search for flights
+THEN i am present with the available flight options
+WHEN i search for hotels
+Then i am present with the available local hotels options
+
 
 ## APIS
 Covid ActNow API
@@ -39,6 +43,14 @@ Must meet good quality coding standards (indentatinos, scoping, naming, etc.)
 Must NOT use alerts, confirms, or prompts (look into modals)
 DONE - Must be deployed to GitHub Pages
 Must be interactive (i.e.: accept and respond to user input)
+
+## Links 
+
+[link to the Web](https://slspencer.github.io/Katuunko/)
+
+[link to GitHub repo](https://github.com/slspencer/Katuunko)
+
+
 
 
 
