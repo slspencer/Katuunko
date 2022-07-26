@@ -28,7 +28,7 @@
             <!-- covid section -->
             <section class="columns">
 
-                <section class="column is-one-third">
+                <section class="column is-two-thirds">
                     <div class="card">
                         <h3 class="card-header-title">Search for a city</h3>
                         <div class="card-body">
@@ -49,84 +49,34 @@
                     </div> <!-- end container -->
                 </section> <!-- end column one-third -->
 
-                <section class="column is-two-thirds">
-                
-                    <div class="dropdown menu"></div>
-                    
-                    <div class="column">
-                        <div class="card">Local attractions</div>
-                        <div class="card-bodyAttractions"></div>
-                        <ul id = "atractions list"></ul>
-                    </div> <!-- end column -->
-    
-                    <!-- Dropdown atractions menu -->          
-                    <div class="dropdown is-hoverable">
-    
-                        <div class="dropdown-trigger">
-                            <button class="button is-outlined is-info"  id="dropDown" aria-haspopup="true" aria-controls="dropdown-menu">
-                                <span>
-                                    See available attractions
-                                </span>
-                                <span class="icon is-small">
-                                    <i class="fa fa-angle-down" aria-hidden="true"></i>
-                                </span>
-                            </button>
-                        </div> <!-- end dropdown-trigger -->
-    
-                        <div class="dropdown-menu" id="attraction-dropdown-menu" role="menu">
-                            <div class="dropdown-content">
-                                <a href="#" class="dropdown-item">
-                                    Restaurants
-                                </a>
-                                <hr class="dropdown-divider">
-                                <a href="#" class="dropdown-item">
-                                    Bars
-                                </a>
-                                <hr class="dropdown-divider">
-                                <a href="#" class="dropdown-item">
-                                    Night life 
-                                </a>
-                                <hr class="dropdown-divider">
-                                <a href="#" class="dropdown-item">
-                                    Shopping
-                                </a>
-                                <hr class="dropdown-divider">
-                                <a href="#" class="dropdown-item">
-                                    Gyms
-                                </a>
-                                <hr class="dropdown-divider">
-                                <a href="#" class="dropdown-item">
-                                    Massage
-                                </a>
-                                <hr class="dropdown-divider">
-                                <a href="#" class="dropdown-item">
-                                    Dry cleaning
-                                </a>
-                                <hr class="dropdown-divider">
-                                <a href="#" class="dropdown-item">
-                                    Hair-salons
-                                </a>
-                                <hr class="dropdown-divider">
-                                <a href="#" class="dropdown-item">
-                                    Towing
-                                </a>
-                                <hr class="dropdown-divider">
-                                <a href="#" class="dropdown-item">
-                                    Delivery
-                                </a>
-                            </div> <!-- end dropdown-content -->
-                        </div> <!-- end dropdown-menu -->
-                    </div> <!-- end dropdown-->
-                    <br/>
-
-                    <section class="column is-one-half">
+                <section class="column is-one-half">
                         <div class="card">
                             <h3 class="card-header-title">Local Attractions</h3>
-                            <div class="card-body">
-                                <p>attractions list goes here</p>
-                                <btn class="button is-small is-info is-outlined" id="add-attractions-button">Add to my ToDo's
-                                </btn> 
-                            </div> <!-- end card-body -->
+                            <!-- KAYAK example embed -->
+                            <div style="height:500px;width: 500px;">
+                                <div id="kayakSearchWidgetContainer"></div>
+                                </div>
+                                <script type="text/javaScript" src="https://www.kayak.com/affiliate/widget-v2.js"></script>
+                                <script type="text/javaScript">
+                                KAYAK.embed({
+                                container: document.getElementById("kayakSearchWidgetContainer"),
+                                hostname: "www.kayak.com",
+                                autoPosition: true,
+                                defaultProduct: "hotels",
+                                enabledProducts: ["hotels", "flights"],
+                                startDate: "2018-10-02",
+                                endDate: "2018-10-28",
+                                origin: "New York, NY",
+                                destination: "Boston, MA",
+                                ssl: true,
+                                affiliateId: "acme_corp",
+                                isInternalLoad: false,
+                                lc: "en",
+                                cc: "us",
+                                mc: "EUR"
+                                });
+                                </script> 
+                                <!-- end KAYAK embed -->
                         </div> <!-- end card -->
                     </section> <!-- enc column one-half -->
 
