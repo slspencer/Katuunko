@@ -164,3 +164,6 @@ $(document).ready(function() {
 
 getCovidButton.addEventListener("click", getCovidData() );
 
+$( function() {
+    $( "#datepicker" ).datepicker();
+  } );
