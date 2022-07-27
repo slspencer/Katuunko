@@ -180,17 +180,29 @@ $( function() {
 //     userPasswordSpan.textContent = password;
 //   }
 
+var tripDisplay = document.querySelector("#my-trip")
+
+
+function renderCityList() {
+    var cityList = localStorage.getItem("cityName");
+
+if (!cityList) {
+    return;
+}
+ tripDisplay.textContent = cityList;
+}
+
 saveCovidButton.addEventListener("click", function(event) {
     event.preventDefault();
-  
-    var cityInput = document.querySelector("#city-search").value;
-  
+  var cityInput = document.querySelector("#city-search").value;
+    
     if (cityInput === "") {
       console.log("cannot be blank");
     } else {
       console.log("success")
   
-      localStorage.setItem("city name", cityInput);
-
+      localStorage.setItem("cityList", JSON.stringify (cityList));
+      
+      renderCityList();
     }
   });
