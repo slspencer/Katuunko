@@ -11,6 +11,7 @@ const keyCovid = "349b5d4f748e4aa2bc08f7a7d16f32a3";
 // input variables
 let getCovidButton = document.querySelector("#get-covid-button");
 let saveCovidButton = document.querySelector("#save-search");
+let clearCovidButton = document.querySelector("#clear-search");
 
 let selectStates = document.getElementById('state'); // we'll put a dropdown menu in element 'state'
 selectStates.options.length = 0;  // set the dropdown menu length to 0
@@ -105,8 +106,7 @@ function getSelectedState(){
     console.log("result = ", result);
     
     return result;
-}
-// end myong.com
+} // getSelectedState
 
 function createStatesDropDownMenu() {
     // get state data
@@ -123,7 +123,7 @@ function createStatesDropDownMenu() {
 
     console.log(usStates[0].abbreviation);
 
-}
+} // end createStatesDropDownMenu
 
 function getCovidData() {
 
@@ -215,7 +215,7 @@ function getCovidData() {
             ["Percent Vaccinated: " + vaccinationsCompletedRatio],
         ]
         
-        // we'll write the data to this container
+        // we'll write the returned covid data to this container
         let covidCity = document.getElementById('city-search');
         let covidState = myState;
         let covidContainer = document.getElementById('display-covid-data');
@@ -254,6 +254,12 @@ function getCovidData() {
 
 } // end getCovidData
 
+function clearCovidData() {
+    // when Clear Search Button is clicked, clear covid data from the DOM, not from local storage
+    let covidContainer = document.getElementById('display-covid-data');
+    covidContainer.innerHTML = "";
+} // end clearCovidData
+
 //----------------------------------
 // Kayak functions go here
 function createKayakWidget() {
@@ -275,6 +281,7 @@ function createKayakWidget() {
         mc: "EUR"
     });
 }
+
 //----------------------------------
 // event listeners go here
 
@@ -284,10 +291,17 @@ document.addEventListener('DOMContentLoaded', function() {
    createKayakWidget(); // create the Kayak widget
 }, false);
 
+// lookup covid data when the Search button is clicked
 getCovidButton.addEventListener("click", function () {
     getCovidData(); // on click run function getCovidData()
 })
 
+// clear covid data when the Clear Search button is clicked
+clearCovidButton.addEventListener("click", function () {
+    clearCovidData(); // on click run function getCovidData()
+})
+
+// datepicker 
 $( function() {
     $( "#datepicker" ).datepicker();
 } );
@@ -317,15 +331,20 @@ $( function() {
 // }
 
 
+
+//-----------------------------------------
+// local storage processing goes here
+
 var tripDisplay = document.querySelector("#my-trips");
 
 saveCovidButton.addEventListener("click", function(event) {
+    // save city name to local storage when 'Save Search' button is clicked
     event.preventDefault();
 
     var cityInput = document.querySelector("#city-search").value;
-//   var cityList = {
-//    cityInput,
-//   }
+    //   var cityList = {
+    //    cityInput,
+    //   }
     
     // if (cityInput === "") {
     //   console.log("cannot be blank");
@@ -334,12 +353,18 @@ saveCovidButton.addEventListener("click", function(event) {
 
     localStorage.setItem("cityInput", JSON.stringify (cityInput));
     renderCityList();
-});
+
+}); // end saveCovidButton
 
 function renderCityList() {
+    // show the saved city name from local storage
+
+    // parse local storage for "cityInput" and save to searchedList
     var searchedList = JSON.parse(localStorage.getItem("cityInput"));
 
-if (searchedList !==null) {
-    tripDisplay.textContent = searchedList
-    }
-}
+    if (searchedList !==null) {
+        // if local storage isn't empty write the saved city name to the DOM
+        tripDisplay.textContent = searchedList
+        }
+
+} // end renderCityList

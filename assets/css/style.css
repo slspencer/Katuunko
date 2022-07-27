@@ -1,4 +1,7 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+
+/*----- tags ------------------- */
+
 ul {
     padding: 0.5em;
     border: 1px solid gray;
@@ -13,6 +16,11 @@ li:first-of-type {
     list-style-type: none;
 }
 
+/*----- classes ---------------- */
+
+.border {
+    border: solid black 1px;
+}
 .column {
     border: solid black 1px;
 }
@@ -25,9 +33,19 @@ li:first-of-type {
     background-color:whitesmoke;
 }
 
-.border {
-    border: solid black 1px;
+.covid-container, .trip-container {
+    padding-left: 1em;
 }
+
+.trip-container p {
+    color: black;
+}
+
+.saved-trips {
+    padding-left: 1em;
+}
+
+/*----- id's ------------------- */
 
 #city-search {
     font-size: 18px;
@@ -37,8 +55,8 @@ li:first-of-type {
     font-size: 18px;
 }
 
+/*------ drop down css --------- */
 
-/*------------ drop down css ----- */
 .dropdown {
     position: relative;
     display: inline-block;
