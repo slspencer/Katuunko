@@ -7,7 +7,7 @@
 //----------------------------------
 // input variables
 let getCovidButton = document.querySelector("#get-covid-button");
-
+let saveCovidButton = document.querySelector("#save-search");
 //----------------------------------
 // data variables
 let transmissionLevel = "unknown";
@@ -23,7 +23,6 @@ const keyCovid = "349b5d4f748e4aa2bc08f7a7d16f32a3"; //uncommented b/c values ar
 // temporary city values until city search is completed
 var keyCity    = "49740";
 var nameCity = "Yuma, AZ";
-
 // search string Urls
 // var requestCovidUrl="https://api.covidactnow.org/v2/cbsa/" + keyCity + ".json?apiKey=" + keyCovid;
 var requestCovidUrl ="https://api.covidactnow.org/v2/cbsa/49740.json?apiKey=349b5d4f748e4aa2bc08f7a7d16f32a3";
@@ -167,3 +166,31 @@ getCovidButton.addEventListener("click", getCovidData() );
 $( function() {
     $( "#datepicker" ).datepicker();
   } );
+
+
+// function renderLastSaved() {
+//     var email = localStorage.getItem("");
+//     var password = localStorage.getItem("password");
+  
+//     if (!email || !password) {
+//       return;
+//     }
+  
+//     userEmailSpan.textContent = email;
+//     userPasswordSpan.textContent = password;
+//   }
+
+saveCovidButton.addEventListener("click", function(event) {
+    event.preventDefault();
+  
+    var cityInput = document.querySelector("#city-search").value;
+  
+    if (cityInput === "") {
+      console.log("cannot be blank");
+    } else {
+      console.log("success")
+  
+      localStorage.setItem("city name", cityInput);
+
+    }
+  });
