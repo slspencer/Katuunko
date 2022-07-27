@@ -278,17 +278,41 @@ $( function() {
 //     userPasswordSpan.textContent = password;
 //   }
 
+
+
+// function renderCityList() {
+//     var cityList = localStorage.getItem("cityName");
+
+// if (!cityList) {
+//     return;
+// }
+//  tripDisplay.textContent = cityList;
+// }
+
+
+var tripDisplay = document.querySelector("#my-trips");
+
 saveCovidButton.addEventListener("click", function(event) {
     event.preventDefault();
 
     var cityInput = document.querySelector("#city-search").value;
+//   var cityList = {
+//    cityInput,
+//   }
+    
+    // if (cityInput === "") {
+    //   console.log("cannot be blank");
+    // } else {
+    //   console.log("success")
 
-    if (cityInput === "") {
-        console.log("cannot be blank");
-    } else {
-        console.log("success")
-
-        ocalStorage.setItem("city name", cityInput);
-
-    }
+    localStorage.setItem("cityInput", JSON.stringify (cityInput));
+    renderCityList();
 });
+
+function renderCityList() {
+    var searchedList = JSON.parse(localStorage.getItem("cityInput"));
+
+if (searchedList !==null) {
+    tripDisplay.textContent = searchedList
+    }
+}
