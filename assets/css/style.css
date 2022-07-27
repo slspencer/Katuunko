@@ -1,4 +1,17 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+ul {
+    padding: 0.5em;
+    border: 1px solid gray;
+}
+li {
+    font-size: 14px; 
+    padding-left: 1em;
+}
+li:first-of-type {
+    color: black;
+    font-size: 18px;
+    list-style-type: none;
+}
 
 .column {
     border: solid black 1px;
@@ -19,3 +32,29 @@
 #city-search {
     font-size: 18px;
 }
+
+#state {
+    font-size: 18px;
+}
+
+
+/*------------ drop down css ----- */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+

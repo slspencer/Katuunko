@@ -3,11 +3,18 @@
 // and display in the browser
 //==================================
 
+//----------------------------------
+// API keys
+const keyCovid = "349b5d4f748e4aa2bc08f7a7d16f32a3"; 
 
 //----------------------------------
 // input variables
 let getCovidButton = document.querySelector("#get-covid-button");
 let saveCovidButton = document.querySelector("#save-search");
+
+let selectStates = document.getElementById('state'); // we'll put a dropdown menu in element 'state'
+selectStates.options.length = 0;  // set the dropdown menu length to 0
+
 //----------------------------------
 // data variables
 let transmissionLevel = "unknown";
@@ -15,28 +22,120 @@ let communityLevel = "unknown";
 let weeklyNewCasesPer100K = "unknown";
 let vaccinationsCompletedRatio = "unknown";
 
+// state dropdown data in an array 
+var usStates = [
+    { abbreviation: 'AL'},
+    { abbreviation: 'AK'},
+    { abbreviation: 'AS'},
+    { abbreviation: 'AZ'},
+    { abbreviation: 'AR'},
+    { abbreviation: 'CA'},
+    { abbreviation: 'CO'},
+    { abbreviation: 'CT'},
+    { abbreviation: 'DE'},
+    { abbreviation: 'DC'},
+    { abbreviation: 'FM'},
+    { abbreviation: 'FL'},
+    { abbreviation: 'GA'},
+    { abbreviation: 'GU'},
+    { abbreviation: 'HI'},
+    { abbreviation: 'ID'},
+    { abbreviation: 'IL'},
+    { abbreviation: 'IN'},
+    { abbreviation: 'IA'},
+    { abbreviation: 'KS'},
+    { abbreviation: 'KY'},
+    { abbreviation: 'LA'},
+    { abbreviation: 'ME'},
+    { abbreviation: 'MH'},
+    { abbreviation: 'MD'},
+    { abbreviation: 'MA'},
+    { abbreviation: 'MI'},
+    { abbreviation: 'MN'},
+    { abbreviation: 'MS'},
+    { abbreviation: 'MO'},
+    { abbreviation: 'MT'},
+    { abbreviation: 'NE'},
+    { abbreviation: 'NV'},
+    { abbreviation: 'NH'},
+    { abbreviation: 'NJ'},
+    { abbreviation: 'NM'},
+    { abbreviation: 'NY'},
+    { abbreviation: 'NC'},
+    { abbreviation: 'ND'},
+    { abbreviation: 'MP'},
+    { abbreviation: 'OH'},
+    { abbreviation: 'OK'},
+    { abbreviation: 'OR'},
+    { abbreviation: 'PW'},
+    { abbreviation: 'PA'},
+    { abbreviation: 'PR'},
+    { abbreviation: 'RI'},
+    { abbreviation: 'SC'},
+    { abbreviation: 'SD'},
+    { abbreviation: 'TN'},
+    { abbreviation: 'TX'},
+    { abbreviation: 'UT'},
+    { abbreviation: 'VT'},
+    { abbreviation: 'VI'},
+    { abbreviation: 'VA'},
+    { abbreviation: 'WA'},
+    { abbreviation: 'WV'},
+    { abbreviation: 'WI'},
+    { abbreviation: 'WY' }
+];
+
 //----------------------------------
-// API keys
-const keyCovid = "349b5d4f748e4aa2bc08f7a7d16f32a3"; //uncommented b/c values are not shared b/w scripts
-// ^ commented because its already defined in script.js, will remove once the two are merged
+// covid functions go here
 
-// temporary city values until city search is completed
-var keyCity    = "49740";
-var nameCity = "Yuma, AZ";
-// search string Urls
-// var requestCovidUrl="https://api.covidactnow.org/v2/cbsa/" + keyCity + ".json?apiKey=" + keyCovid;
-var requestCovidUrl ="https://api.covidactnow.org/v2/cbsa/49740.json?apiKey=349b5d4f748e4aa2bc08f7a7d16f32a3";
+// from https://mkyong.com/javascript/javascript-get-selected-value-from-dropdown-list/
+function getSelectedState(){
 
-console.log("keyCovid = ", keyCovid);
-console.log("keyCity = ", keyCity);
-console.log("nameCity = ", nameCity);
-console.log("requestCovidURL = ", requestCovidUrl);
+    console.log('getSelectedState');
 
-//----------------------------------
-// functions go here
+    var e = document.getElementById("state");
+
+    console.log("e = ", e);
+    console.log("e.selectedIndex =", e.selectedIndex);
+    console.log("e.options[e.selectedIndex] =", e.options[e.selectedIndex]);
+    console.log("e.options[e.selectedIndex].value = ", e.options[e.selectedIndex].value);
+
+    var result = e.options[e.selectedIndex].value;
+
+    console.log("result = ", result);
+    
+    return result;
+}
+// end myong.com
+
+function createStatesDropDownMenu() {
+    // get state data
+    console.log("createStatesDropDownMenu");
+
+    // populate the dropdown list
+    for ( var i = 0; i < usStates.length; i++) {
+        var opt1 = usStates[i].abbreviation;
+        var option = document.createElement("OPTION");
+        option.text = opt1; // show this text in the drop down list
+        option.value = opt1; // use this value when returning user selection
+        selectStates.options.add(option); // add this state's text & value to the selectStates drop down list
+    }
+
+    console.log(usStates[0].abbreviation);
+
+}
+
 function getCovidData() {
 
     console.log("Search button clicked");
+
+    var myState = getSelectedState();
+
+    console.log("myState = ", myState);
+
+    var requestCovidUrl =  "https://api.covidactnow.org/v2/state/" + myState + ".json?apiKey=349b5d4f748e4aa2bc08f7a7d16f32a3";
+
+    console.log('requestCovidUrl = ', requestCovidUrl);
 
     // request covid data from API
     fetch(requestCovidUrl) 
@@ -118,11 +217,19 @@ function getCovidData() {
         
         // we'll write the data to this container
         let covidCity = document.getElementById('city-search');
+        let covidState = myState;
         let covidContainer = document.getElementById('display-covid-data');
         
         // create the unordered list
         var covidDataList = document.createElement('ul');    // create the list
         covidDataList.setAttribute('id', 'covid-data-list'); // give the list an id
+
+        // add covidCity value to the top of the list
+        var cityHeader = document.createElement('li');
+        cityHeader.innerHTML = covidCity.value;
+        covidDataList.appendChild(cityHeader); // add item to the covid data list
+
+        console.log("li = ", li);        
 
         for (i = 0; i <= covidArray.length - 1; i++) {
             // add each item to the list
@@ -135,12 +242,11 @@ function getCovidData() {
             console.log("li = ", li);
         }
 
-
         console.log("covid city =", covidCity);
+        console.log("covid city value =", covidCity.value);        
+        console.log("covid state =", covidState);
         console.log("covid display list =", covidDataList);
 
-        // display the covid city name in the DOM
-        covidCity.value = nameCity;       
         // display the covid data list in the DOM
         covidContainer.appendChild(covidDataList);
 
@@ -148,34 +254,53 @@ function getCovidData() {
 
 } // end getCovidData
 
-
-
+//----------------------------------
+// Kayak functions go here
+function createKayakWidget() {
+    KAYAK.embed({
+        container: document.getElementById("kayakSearchWidgetContainer"),
+        hostname: "www.kayak.com",
+        autoPosition: true,
+        defaultProduct: "hotels",
+        enabledProducts: ["hotels", "flights"],
+        startDate: "2018-10-02",
+        endDate: "2018-10-28",
+        origin: "New York, NY",
+        destination: "Boston, MA",
+        ssl: true,
+        affiliateId: "acme_corp",
+        isInternalLoad: false,
+        lc: "en",
+        cc: "us",
+        mc: "EUR"
+    });
+}
 //----------------------------------
 // event listeners go here
 
-// temporary until we have a city search funtion
-$(document).ready(function() {
-     // fill in the Search City button (#get-covid-button) with the cityName value from above
-    var elem = document.getElementById("city-search");
-    elem.value = nameCity;
-}); // on load, 
+// do these things when the DOM content has loaded
+document.addEventListener('DOMContentLoaded', function() {
+   createStatesDropDownMenu(); // create the drop down menu
+   createKayakWidget(); // create the Kayak widget
+}, false);
 
-
-getCovidButton.addEventListener("click", getCovidData() );
+getCovidButton.addEventListener("click", function () {
+    getCovidData(); // on click run function getCovidData()
+})
 
 $( function() {
     $( "#datepicker" ).datepicker();
-  } );
+} );
 
 
 // function renderLastSaved() {
 //     var email = localStorage.getItem("");
 //     var password = localStorage.getItem("password");
-  
+
 //     if (!email || !password) {
 //       return;
 //     }
-  
+
 //     userEmailSpan.textContent = email;
 //     userPasswordSpan.textContent = password;
 //   }
@@ -197,7 +322,7 @@ var tripDisplay = document.querySelector("#my-trips");
 saveCovidButton.addEventListener("click", function(event) {
     event.preventDefault();
 
-  var cityInput = document.querySelector("#city-search").value;
+    var cityInput = document.querySelector("#city-search").value;
 //   var cityList = {
 //    cityInput,
 //   }
@@ -206,15 +331,15 @@ saveCovidButton.addEventListener("click", function(event) {
     //   console.log("cannot be blank");
     // } else {
     //   console.log("success")
-  
-      localStorage.setItem("cityInput", JSON.stringify (cityInput));
-      renderCityList();
-    });
 
-  function renderCityList() {
+    localStorage.setItem("cityInput", JSON.stringify (cityInput));
+    renderCityList();
+});
+
+function renderCityList() {
     var searchedList = JSON.parse(localStorage.getItem("cityInput"));
 
 if (searchedList !==null) {
     tripDisplay.textContent = searchedList
-}
+    }
 }
