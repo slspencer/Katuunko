@@ -1,4 +1,17 @@
 @import "https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css";
+ul {
+    padding: 0.5em;
+    border: 1px solid gray;
+}
+li {
+    font-size: 14px; 
+    padding-left: 1em;
+}
+li:first-of-type {
+    color: black;
+    font-size: 18px;
+    list-style-type: none;
+}
 
 .column {
     border: solid black 1px;

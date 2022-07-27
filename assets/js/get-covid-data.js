@@ -86,7 +86,7 @@ var usStates = [
 ];
 
 //----------------------------------
-// functions 
+// covid functions go here
 
 // from https://mkyong.com/javascript/javascript-get-selected-value-from-dropdown-list/
 function getSelectedState(){
@@ -124,8 +124,6 @@ function createStatesDropDownMenu() {
     console.log(usStates[0].abbreviation);
 
 }
-
-
 
 function getCovidData() {
 
@@ -226,6 +224,13 @@ function getCovidData() {
         var covidDataList = document.createElement('ul');    // create the list
         covidDataList.setAttribute('id', 'covid-data-list'); // give the list an id
 
+        // add covidCity value to the top of the list
+        var cityHeader = document.createElement('li');
+        cityHeader.innerHTML = covidCity.value;
+        covidDataList.appendChild(cityHeader); // add item to the covid data list
+
+        console.log("li = ", li);        
+
         for (i = 0; i <= covidArray.length - 1; i++) {
             // add each item to the list
 
@@ -237,8 +242,8 @@ function getCovidData() {
             console.log("li = ", li);
         }
 
-        covidCity = document.getElementById("city-search"); 
         console.log("covid city =", covidCity);
+        console.log("covid city value =", covidCity.value);        
         console.log("covid state =", covidState);
         console.log("covid display list =", covidDataList);
 
@@ -250,11 +255,33 @@ function getCovidData() {
 } // end getCovidData
 
 //----------------------------------
+// Kayak functions go here
+function createKayakWidget() {
+    KAYAK.embed({
+        container: document.getElementById("kayakSearchWidgetContainer"),
+        hostname: "www.kayak.com",
+        autoPosition: true,
+        defaultProduct: "hotels",
+        enabledProducts: ["hotels", "flights"],
+        startDate: "2018-10-02",
+        endDate: "2018-10-28",
+        origin: "New York, NY",
+        destination: "Boston, MA",
+        ssl: true,
+        affiliateId: "acme_corp",
+        isInternalLoad: false,
+        lc: "en",
+        cc: "us",
+        mc: "EUR"
+    });
+}
+//----------------------------------
 // event listeners go here
 
 // do these things when the DOM content has loaded
 document.addEventListener('DOMContentLoaded', function() {
    createStatesDropDownMenu(); // create the drop down menu
+   createKayakWidget(); // create the Kayak widget
 }, false);
 
 getCovidButton.addEventListener("click", function () {
