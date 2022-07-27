@@ -1,5 +1,6 @@
 <!DOCTYPE html>
     <html>
+
         <head>
             <meta charset="utf-8">
             <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,6 +11,7 @@
             <!-- our stylesheet -->
             <link rel="stylesheet" href="./assets/css/style.css">
         </head>
+
         <body>
             <!-- hero -->
             <section class="hero has-background-primary mb-3">
@@ -32,13 +34,18 @@
                         <h3 class="card-header-title is-centered">Search for a city</h3>
                         <div class="card-body">
                             <input type="text" class="is-fluid ml-3" id="city-search" placeholder="Enter your city" area-label="enter a city name" aria-describedby="search button">
-        
+
+                            <!-- state abbreviations -->
+                            <select id="state" required>
+                            </select>
+
                             <btn class="button is-small is-info is-outlined" id="get-covid-button">Search
                             </btn>
                             <btn class="button is-small is-info is-outlined" id="save-search">Save Search</btn> 
                         </div> <!-- end card-body -->
                     </div> <!-- end card -->
-                    <!-- covid info dispaly container -->
+
+                    <!-- covid info display container -->
                     <h3 class="card-header-title  m-1 mt-3 p-3">Covid-19 Statistics</h3>
                     <p class="card-content p-4 is-primary" id="display-covid-data">
                     </p>
@@ -52,33 +59,33 @@
                 <section class="column is-one-third">
                         <div class="card">
                             <h3 class="card-header-title is-centered">Hotels and Flights via KAYAK</h3>
-                            <!-- KAYAK example embed -->   
+
+                            <!-- KAYAK example embed    
                             <div style="height:500px;width: 500px;">
                                 <div id="kayakSearchWidgetContainer"></div>
-                                </div>
                                 <script type="text/javaScript" src="https://www.kayak.com/affiliate/widget-v2.js"></script>
                                 <script type="text/javaScript">
-                                KAYAK.embed({
-                                container: document.getElementById("kayakSearchWidgetContainer"),
-                                hostname: "www.kayak.com",
-                                autoPosition: true,
-                                defaultProduct: "hotels",
-                                enabledProducts: ["hotels", "flights"],
-                                startDate: "2018-10-02",
-                                endDate: "2018-10-28",
-                                origin: "New York, NY",
-                                destination: "Boston, MA",
-                                ssl: true,
-                                affiliateId: "acme_corp",
-                                isInternalLoad: false,
-                                lc: "en",
-                                cc: "us",
-                                mc: "EUR"
-                                });
-                                </script>
-                                </div>
-                            </div> 
-                                <!-- end KAYAK embed -->
+                                    KAYAK.embed({
+                                        container: document.getElementById("kayakSearchWidgetContainer"),
+                                        hostname: "www.kayak.com",
+                                        autoPosition: true,
+                                        defaultProduct: "hotels",
+                                        enabledProducts: ["hotels", "flights"],
+                                        startDate: "2018-10-02",
+                                        endDate: "2018-10-28",
+                                        origin: "New York, NY",
+                                        destination: "Boston, MA",
+                                        ssl: true,
+                                        affiliateId: "acme_corp",
+                                        isInternalLoad: false,
+                                        lc: "en",
+                                        cc: "us",
+                                        mc: "EUR"
+                                    });
+                                </script> 
+                            </div> < ! -- end example embed --> 
+
+                        </div> <!-- end class card -->
                 </section> 
                 <!-- end column one-third -->
                 <!-- end columns-->
@@ -87,9 +94,12 @@
 
         </body>
 
+        <!-- industry/commercial scripts -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-        <!-- ><script type="text/javascript" src="./assets/js/script.js"></script> //this file doesn't do anything at the moment<--> 
-        <script type="text/javascript" src="./assets/js/get-covid-data.js"></script>        
-                                
+        
+        <!-- our scripts -->      
+        <script type="text/javascript" src="./assets/js/script.js"></script>       
+        <script type="text/javascript" src="./assets/js/get-covid-data.js"></script>
+
     </html>
