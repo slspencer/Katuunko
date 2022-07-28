@@ -47,12 +47,6 @@
                             <btn class="button is-small is-info is-outlined" id="search-covid-api">Search</btn>
                             <!-- clear data from the DOM, not from local storage -->
                             <btn class="button is-small is-info is-outlined" id="clear-search">Clear Search</btn>                            
-                            <!-- save data to local storage -->
-                            <btn class="button is-small is-info is-outlined" id="save-trips">Save City to Trips</btn> 
-                            <!-- clear local storage -->
-                            <btn class="button is-small is-info is-outlined" id="show-trips">Show My Saved Trips</btn>                               
-                            <!-- clear local storage -->
-                            <btn class="button is-small is-info is-outlined" id="clear-trips">Clear Trips</btn>                             
 
 
                         </div> <!-- end card-body -->
@@ -71,16 +65,26 @@
                         </p>
                     </div> <!-- end covid display container-->
 
-                    <!-- trips header container -->                    
-                    <div class="container">
-                        <h4 class="card-header-title">Saved Trips</h4>
-                    </div> <!-- end trips header-->
+                    <!-- trips header container -->
+                    <div class="card">
+                        <h3 class="card-header-title is-centered">My Trips</h3>
+                        <div class="card-body is-fluid" id="trip-header"> <!-- trips header-->                         
+                            <!-- save city to My Trips local storage -->
+                            <btn class="button is-small is-info is-outlined" id="save-trips">Save City to Trips</btn> 
+                            <!-- diplay My Trips local storage -->
+                            <btn class="button is-small is-info is-outlined" id="show-trips">Show My Saved Trips</btn>                               
+                            <!-- clear My Trips local storage -->
+                            <btn class="button is-small is-info is-outlined" id="clear-trips">Clear Trips</btn>
+                        </div> <!-- end card-body trips header-->
+                    </div> <!-- end card header container -->
+                 
 
+                    <!-- display My Trips container-->
                     <div class="trip-container">    
                         <p class="card-container p-4 is-primary" id="my-trips">
                             <!-- saved trips will be written dynamically here -->
                         </p> 
-                    </div> <!-- end saved Trips container-->
+                    </div> <!-- end display My Trips container-->
 
                 </section> <!-- end column two-thirds Covid data section-->
 

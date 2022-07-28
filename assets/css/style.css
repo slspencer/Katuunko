@@ -46,8 +46,8 @@ li:first-of-type {
     font-size: 14px;
 }
 
-.saved-trips {
-    padding-left: 1em;
+.save-trips {
+    padding-left: 2em;
 }
 
 /*----- id's ------------------- */
@@ -58,6 +58,10 @@ li:first-of-type {
 
 #state {
     font-size: 18px;
+}
+
+#trip-header {
+    padding-left: 1em;
 }
 
 /*------ drop down css --------- */
