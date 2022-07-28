@@ -95,7 +95,7 @@ var usStates = [
 ];
 
 //----------------------------------
-// covid functions go here
+// functions go here
 
 // from https://mkyong.com/javascript/javascript-get-selected-value-from-dropdown-list/
 function getSelectedState(){
@@ -260,13 +260,54 @@ function getCovidData() {
 
     })
 
-} // end getCovidData
+} // end getCovidData()
+
+function displayTrips() {
+    // function to show cities from localStorage
+
+    console.log("--- displayTrips() ----------");
+
+    tripsContainer.innerHTML = ""; // clear the tripsContainer of previous data
+    var myTripList = document.createElement('ul'); // create an empty unordered list
+
+    // get the city names into a list
+    for (var i = 0; i < localStorage.length; i++) {
+
+        var key = localStorage.key(i); // index from storage
+        var city = localStorage.getItem(key).replace(/['"]+/g, ''); // city from storage, remove any quotation marks
+        var cityItem = document.createElement('li'); // create an empty list item
+        console.log('--- maybe add to list =', city);
+
+        var found = 0;
+        for (element in tripList.getElementsByTagName("li")) {
+            var val = element.value;
+            if (val === city) {
+                found = 1;
+                console.log("--- found ", val, " in  list =", city);
+                break;
+            }
+        }
+
+        // add to the tripList if it wasn't already in localStorage
+        if (found === 0) {
+            cityItem.innerHTML = city;
+            myTripList.appendChild(cityItem); // add item to the list
+            console.log('--- added to list = ', cityItem);
+        }
+
+    }
+
+    // write the tripList to the DOM
+    tripsContainer.appendChild(myTripList);
+    console.log("--- new tripList =", myTripList);
+
+} // end displayTrips()
 
 function clearCovidData() {
     // when Clear Search Button is clicked, clear covid data from the DOM, not from local storage
     let covidContainer = document.getElementById('display-covid-data');
     covidContainer.innerHTML = "";
-} // end clearCovidData
+} // end clearCovidData()
 
 //----------------------------------
 // Kayak functions go here
@@ -288,10 +329,10 @@ function createKayakWidget() {
         cc: "us",
         mc: "EUR"
     });
-}
+} // end createKayakWidget()
 
 //----------------------------------
-// event listeners go here
+// covid event listeners go here
 
 // do these things when the DOM content has loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -313,7 +354,6 @@ clearCovidButton.addEventListener("click", function () {
 $( function() {
     $( "#datepicker" ).datepicker();
 } );
-
 
 //-----------------------------------------
 // local storage event listeners go here
@@ -391,45 +431,3 @@ clearTripsButton.addEventListener("click", function(event) {
     } // remove all list items from tripList unordered list
 
 }); // end clearTripsButton
-
-
-function displayTrips() {
-    // function to show cities from localStorage
-
-    console.log("--- displayTrips() ----------");
-
-    tripsContainer.innerHTML = ""; // clear the tripsContainer of previous data
-    var myTripList = document.createElement('ul'); // create an empty unordered list
-
-    // get the city names into a list
-    for (var i = 0; i < localStorage.length; i++) {
-
-        var key = localStorage.key(i); // index from storage
-        var city = localStorage.getItem(key).replace(/['"]+/g, ''); // city from storage, remove any quotation marks
-        var cityItem = document.createElement('li'); // create an empty list item
-        console.log('--- maybe add to list =', city);
-
-        var found = 0;
-        for (element in tripList.getElementsByTagName("li")) {
-            var val = element.value;
-            if (val === city) {
-                found = 1;
-                console.log("--- found ", val, " in  list =", city);
-                break;
-            }
-        }
-
-        // add to the tripList if it wasn't already in localStorage
-        if (found === 0) {
-            cityItem.innerHTML = city;
-            myTripList.appendChild(cityItem); // add item to the list
-            console.log('--- added to list = ', cityItem);
-        }
-
-    }
-
-    // write the tripList to the DOM
-    tripsContainer.appendChild(myTripList);
-    console.log("--- new tripList =", myTripList);
-
-}
