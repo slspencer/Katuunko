@@ -22,7 +22,7 @@ let showTripsButton = document.querySelector("#show-trips");
 let clearTripsButton = document.querySelector("#clear-trips");
 var tripsContainer = document.querySelector("#my-trips");
 var tripList = document.createElement('ul'); // create the tripList once, add cities in saveTripsButton listener
-
+tripList.setAttribute("id", "trip-ul");
 
 //----------------------------------
 // covid data variables
@@ -321,12 +321,40 @@ $( function() {
 saveTripsButton.addEventListener("click", function(event) {
     // save city name to local storage when 'Save Search' button is clicked
     event.preventDefault();
+    console.log("+++ saveTripsButton ++++++++++");
+
+    console.log('+++ localStorage before adding city =', localStorage);
 
     var cityInput = document.querySelector("#city-search").value;
-    console.log('cityInput save to localStorage = ', cityInput);
-    localStorage.setItem("cityInput", JSON.stringify (cityInput));
+    console.log('+++ cityInput to save to localStorage = ', cityInput);
 
-    displayTrips(); 
+    var found = 0;
+
+    for (var i = 0; i < localStorage.length; i++) { 
+        //if city isn't already in local Storage then add it
+        var key = localStorage.key(i); // index from storage
+        var cityLS = localStorage.getItem(key).replace(/['"]+/g, ''); // city from storage, remove quotes
+        console.log("+++ cityLS=", cityLS, "cityInput=", cityInput);
+
+        // compare cityLS with cityInput
+        if (cityLS === cityInput) {
+            found = 1;
+            console.log("+++ found", cityInput, "in localStorage");
+            break;
+        }
+    } // end for
+
+    if (found === 0) {
+        // if it's not already in localStorage, add it
+        key = localStorage.length + 1;
+        keyText = key.toString();
+        localStorage.setItem(keyText, JSON.stringify (cityInput));
+        console.log('+++ localStorage after adding city =', localStorage);
+
+        // display trips from local storage
+        displayTrips(); 
+
+    } // end if
 
 }); // end saveTripsButton
 
@@ -339,9 +367,12 @@ showTripsButton.addEventListener("click", function(event) {
 clearTripsButton.addEventListener("click", function(event) {
     // clear data from local storage
     event.preventDefault();
-    localStorage.clear(); // clear local storage doesn't seem to work
+    console.log("*** clearTripsButton **********");
 
-    // clear items from local storage
+    // remove cites from localStorage
+    console.log("*** localStorage before clearing = ", localStorage);
+    localStorage.clear(); // clear local storage doesn't seem to work
+    // try removing them one at a time
     for (var i = 0; i < localStorage.length; i++) {
 
         var key = localStorage.key(i); // index from storage
@@ -349,11 +380,15 @@ clearTripsButton.addEventListener("click", function(event) {
         localStorage.removeItem(city);
 
     }
-
+    // try it this way
     window.localStorage.clear(); // try it again, can't hurt
+    console.log("*** localStorage after clearing = ", localStorage);
 
     // clear data from the DOM
     tripsContainer.innerHTML = ""; // clear trip-container in the DOM
+    while (tripList.firstChild) {
+        tripList.removeChild(tripList.lastChild);
+    } // remove all list items from tripList unordered list
 
 }); // end clearTripsButton
 
@@ -361,26 +396,40 @@ clearTripsButton.addEventListener("click", function(event) {
 function displayTrips() {
     // function to show cities from localStorage
 
+    console.log("--- displayTrips() ----------");
+
+    tripsContainer.innerHTML = ""; // clear the tripsContainer of previous data
+    var myTripList = document.createElement('ul'); // create an empty unordered list
+
     // get the city names into a list
     for (var i = 0; i < localStorage.length; i++) {
-
-        tripsContainer.innerHTML = "";
 
         var key = localStorage.key(i); // index from storage
         var city = localStorage.getItem(key).replace(/['"]+/g, ''); // city from storage, remove any quotation marks
         var cityItem = document.createElement('li'); // create an empty list item
+        console.log('--- maybe add to list =', city);
 
-        console.log('local storage city =', city);
+        var found = 0;
+        for (element in tripList.getElementsByTagName("li")) {
+            var val = element.value;
+            if (val === city) {
+                found = 1;
+                console.log("--- found ", val, " in  list =", city);
+                break;
+            }
+        }
 
-        cityItem.innerHTML = city;
-        tripList.appendChild(cityItem); // add item to the city list
-
-        console.log('city = ', cityItem);
+        // add to the tripList if it wasn't already in localStorage
+        if (found === 0) {
+            cityItem.innerHTML = city;
+            myTripList.appendChild(cityItem); // add item to the list
+            console.log('--- added to list = ', cityItem);
+        }
 
     }
 
-    // write the list to the DOM
-    tripsContainer.appendChild(tripList);
-
+    // write the tripList to the DOM
+    tripsContainer.appendChild(myTripList);
+    console.log("--- new tripList =", myTripList);
 
 }
