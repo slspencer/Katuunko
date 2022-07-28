@@ -234,8 +234,8 @@ function getCovidData() {
 
         // add covidCity value to the top of the list
         var cityHeader = document.createElement('li');
-        cityHeader.innerHTML = covidCity.value;
-        covidDataList.appendChild(cityHeader); // add item to the covid data list
+        cityHeader.innerHTML = covidCity.value + ", " + covidState; // display city & state 
+        covidDataList.appendChild(cityHeader); // add covidCity to the covid header
 
         console.log("li = ", li);        
 
