@@ -9,14 +9,23 @@ const keyCovid = "349b5d4f748e4aa2bc08f7a7d16f32a3";
 
 //----------------------------------
 // input variables
-let getCovidButton = document.querySelector("#get-covid-button");
-let saveCovidButton = document.querySelector("#save-search");
 
+// covid input variables
+let searchCovidButton = document.querySelector("#search-covid-api");
+let clearCovidButton = document.querySelector("#clear-search");
 let selectStates = document.getElementById('state'); // we'll put a dropdown menu in element 'state'
 selectStates.options.length = 0;  // set the dropdown menu length to 0
 
+// trips input variables
+let saveTripsButton = document.querySelector("#save-trips");
+let showTripsButton = document.querySelector("#show-trips");
+let clearTripsButton = document.querySelector("#clear-trips");
+var tripsContainer = document.querySelector("#my-trips");
+var tripList = document.createElement('ul'); // create the tripList once, add cities in saveTripsButton listener
+
+
 //----------------------------------
-// data variables
+// covid data variables
 let transmissionLevel = "unknown";
 let communityLevel = "unknown";
 let weeklyNewCasesPer100K = "unknown";
@@ -105,8 +114,7 @@ function getSelectedState(){
     console.log("result = ", result);
     
     return result;
-}
-// end myong.com
+} // getSelectedState
 
 function createStatesDropDownMenu() {
     // get state data
@@ -123,7 +131,7 @@ function createStatesDropDownMenu() {
 
     console.log(usStates[0].abbreviation);
 
-}
+} // end createStatesDropDownMenu
 
 function getCovidData() {
 
@@ -215,7 +223,7 @@ function getCovidData() {
             ["Percent Vaccinated: " + vaccinationsCompletedRatio],
         ]
         
-        // we'll write the data to this container
+        // we'll write the returned covid data to this container
         let covidCity = document.getElementById('city-search');
         let covidState = myState;
         let covidContainer = document.getElementById('display-covid-data');
@@ -254,6 +262,12 @@ function getCovidData() {
 
 } // end getCovidData
 
+function clearCovidData() {
+    // when Clear Search Button is clicked, clear covid data from the DOM, not from local storage
+    let covidContainer = document.getElementById('display-covid-data');
+    covidContainer.innerHTML = "";
+} // end clearCovidData
+
 //----------------------------------
 // Kayak functions go here
 function createKayakWidget() {
@@ -275,6 +289,7 @@ function createKayakWidget() {
         mc: "EUR"
     });
 }
+
 //----------------------------------
 // event listeners go here
 
@@ -284,62 +299,88 @@ document.addEventListener('DOMContentLoaded', function() {
    createKayakWidget(); // create the Kayak widget
 }, false);
 
-getCovidButton.addEventListener("click", function () {
+// lookup covid data when the Search button is clicked
+searchCovidButton.addEventListener("click", function () {
     getCovidData(); // on click run function getCovidData()
 })
 
+// clear covid data when the Clear Search button is clicked
+clearCovidButton.addEventListener("click", function () {
+    clearCovidData(); // on click run function getCovidData()
+})
+
+// datepicker 
 $( function() {
     $( "#datepicker" ).datepicker();
 } );
 
 
-// function renderLastSaved() {
-//     var email = localStorage.getItem("");
-//     var password = localStorage.getItem("password");
+//-----------------------------------------
+// local storage event listeners go here
 
-//     if (!email || !password) {
-//       return;
-//     }
-
-//     userEmailSpan.textContent = email;
-//     userPasswordSpan.textContent = password;
-//   }
-
-
-
-// function renderCityList() {
-//     var cityList = localStorage.getItem("cityName");
-
-// if (!cityList) {
-//     return;
-// }
-//  tripDisplay.textContent = cityList;
-// }
-
-
-var tripDisplay = document.querySelector("#my-trips");
-
-saveCovidButton.addEventListener("click", function(event) {
+saveTripsButton.addEventListener("click", function(event) {
+    // save city name to local storage when 'Save Search' button is clicked
     event.preventDefault();
 
     var cityInput = document.querySelector("#city-search").value;
-//   var cityList = {
-//    cityInput,
-//   }
-    
-    // if (cityInput === "") {
-    //   console.log("cannot be blank");
-    // } else {
-    //   console.log("success")
-
+    console.log('cityInput save to localStorage = ', cityInput);
     localStorage.setItem("cityInput", JSON.stringify (cityInput));
-    renderCityList();
-});
 
-function renderCityList() {
-    var searchedList = JSON.parse(localStorage.getItem("cityInput"));
+    displayTrips(); 
 
-if (searchedList !==null) {
-    tripDisplay.textContent = searchedList
+}); // end saveTripsButton
+
+showTripsButton.addEventListener("click", function(event) {
+    // show data from local storage
+    event.preventDefault();
+    displayTrips(); // show trips from local storage
+}); // end showTripsButton
+
+clearTripsButton.addEventListener("click", function(event) {
+    // clear data from local storage
+    event.preventDefault();
+    localStorage.clear(); // clear local storage doesn't seem to work
+
+    // clear items from local storage
+    for (var i = 0; i < localStorage.length; i++) {
+
+        var key = localStorage.key(i); // index from storage
+        var city = localStorage.getItem(key);
+        localStorage.removeItem(city);
+
     }
+
+    window.localStorage.clear(); // try it again, can't hurt
+
+    // clear data from the DOM
+    tripsContainer.innerHTML = ""; // clear trip-container in the DOM
+
+}); // end clearTripsButton
+
+
+function displayTrips() {
+    // function to show cities from localStorage
+
+    // get the city names into a list
+    for (var i = 0; i < localStorage.length; i++) {
+
+        tripsContainer.innerHTML = "";
+
+        var key = localStorage.key(i); // index from storage
+        var city = localStorage.getItem(key).replace(/['"]+/g, ''); // city from storage, remove any quotation marks
+        var cityItem = document.createElement('li'); // create an empty list item
+
+        console.log('local storage city =', city);
+
+        cityItem.innerHTML = city;
+        tripList.appendChild(cityItem); // add item to the city list
+
+        console.log('city = ', cityItem);
+
+    }
+
+    // write the list to the DOM
+    tripsContainer.appendChild(tripList);
+
+
 }
