@@ -37,8 +37,13 @@ li:first-of-type {
     padding-left: 1em;
 }
 
-.trip-container p {
+.trip-container ul {
     color: black;
+    border: 0;
+}
+
+.trip-container li:first-of-type {
+    font-size: 14px;
 }
 
 .saved-trips {

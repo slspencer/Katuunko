@@ -9,15 +9,23 @@ const keyCovid = "349b5d4f748e4aa2bc08f7a7d16f32a3";
 
 //----------------------------------
 // input variables
-let getCovidButton = document.querySelector("#get-covid-button");
-let saveCovidButton = document.querySelector("#save-search");
-let clearCovidButton = document.querySelector("#clear-search");
 
+// covid input variables
+let searchCovidButton = document.querySelector("#search-covid-api");
+let clearCovidButton = document.querySelector("#clear-search");
 let selectStates = document.getElementById('state'); // we'll put a dropdown menu in element 'state'
 selectStates.options.length = 0;  // set the dropdown menu length to 0
 
+// trips input variables
+let saveTripsButton = document.querySelector("#save-trips");
+let showTripsButton = document.querySelector("#show-trips");
+let clearTripsButton = document.querySelector("#clear-trips");
+var tripsContainer = document.querySelector("#my-trips");
+var tripList = document.createElement('ul'); // create the tripList once, add cities in saveTripsButton listener
+
+
 //----------------------------------
-// data variables
+// covid data variables
 let transmissionLevel = "unknown";
 let communityLevel = "unknown";
 let weeklyNewCasesPer100K = "unknown";
@@ -292,7 +300,7 @@ document.addEventListener('DOMContentLoaded', function() {
 }, false);
 
 // lookup covid data when the Search button is clicked
-getCovidButton.addEventListener("click", function () {
+searchCovidButton.addEventListener("click", function () {
     getCovidData(); // on click run function getCovidData()
 })
 
@@ -307,64 +315,72 @@ $( function() {
 } );
 
 
-// function renderLastSaved() {
-//     var email = localStorage.getItem("");
-//     var password = localStorage.getItem("password");
-
-//     if (!email || !password) {
-//       return;
-//     }
-
-//     userEmailSpan.textContent = email;
-//     userPasswordSpan.textContent = password;
-//   }
-
-
-
-// function renderCityList() {
-//     var cityList = localStorage.getItem("cityName");
-
-// if (!cityList) {
-//     return;
-// }
-//  tripDisplay.textContent = cityList;
-// }
-
-
-
 //-----------------------------------------
-// local storage processing goes here
+// local storage event listeners go here
 
-var tripDisplay = document.querySelector("#my-trips");
-
-saveCovidButton.addEventListener("click", function(event) {
+saveTripsButton.addEventListener("click", function(event) {
     // save city name to local storage when 'Save Search' button is clicked
     event.preventDefault();
 
     var cityInput = document.querySelector("#city-search").value;
-    //   var cityList = {
-    //    cityInput,
-    //   }
-    
-    // if (cityInput === "") {
-    //   console.log("cannot be blank");
-    // } else {
-    //   console.log("success")
-
+    console.log('cityInput save to localStorage = ', cityInput);
     localStorage.setItem("cityInput", JSON.stringify (cityInput));
-    renderCityList();
 
-}); // end saveCovidButton
+    displayTrips(); 
 
-function renderCityList() {
-    // show the saved city name from local storage
+}); // end saveTripsButton
 
-    // parse local storage for "cityInput" and save to searchedList
-    var searchedList = JSON.parse(localStorage.getItem("cityInput"));
+showTripsButton.addEventListener("click", function(event) {
+    // show data from local storage
+    event.preventDefault();
+    displayTrips(); // show trips from local storage
+}); // end showTripsButton
 
-    if (searchedList !==null) {
-        // if local storage isn't empty write the saved city name to the DOM
-        tripDisplay.textContent = searchedList
-        }
+clearTripsButton.addEventListener("click", function(event) {
+    // clear data from local storage
+    event.preventDefault();
+    localStorage.clear(); // clear local storage doesn't seem to work
 
-} // end renderCityList
+    // clear items from local storage
+    for (var i = 0; i < localStorage.length; i++) {
+
+        var key = localStorage.key(i); // index from storage
+        var city = localStorage.getItem(key);
+        localStorage.removeItem(city);
+
+    }
+
+    window.localStorage.clear(); // try it again, can't hurt
+
+    // clear data from the DOM
+    tripsContainer.innerHTML = ""; // clear trip-container in the DOM
+
+}); // end clearTripsButton
+
+
+function displayTrips() {
+    // function to show cities from localStorage
+
+    // get the city names into a list
+    for (var i = 0; i < localStorage.length; i++) {
+
+        tripsContainer.innerHTML = "";
+
+        var key = localStorage.key(i); // index from storage
+        var city = localStorage.getItem(key).replace(/['"]+/g, ''); // city from storage, remove any quotation marks
+        var cityItem = document.createElement('li'); // create an empty list item
+
+        console.log('local storage city =', city);
+
+        cityItem.innerHTML = city;
+        tripList.appendChild(cityItem); // add item to the city list
+
+        console.log('city = ', cityItem);
+
+    }
+
+    // write the list to the DOM
+    tripsContainer.appendChild(tripList);
+
+
+}
