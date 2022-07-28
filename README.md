@@ -4,7 +4,6 @@ View live at
 ![https://slspencer.github.io/Katuunko/index.html](https://slspencer.github.io/Katuunko/index.html)
 
 ## Screenshot/Video
-![SCR-20220728-hoh](https://user-images.githubusercontent.com/105229148/181603563-1cd1e615-4e22-4484-b6e8-1b87abd10f30.png)
 ![./docs/screenshot.PNG](./docs/screenshot.PNG?raw=true)
 
 ## Description
