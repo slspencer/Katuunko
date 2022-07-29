@@ -1,7 +1,7 @@
 # Katuunko
 Module 07 Project 1
 View live at 
-![https://slspencer.github.io/Katuunko/index.html](https://slspencer.github.io/Katuunko/index.html)
+[https://slspencer.github.io/Katuunko/index.html](https://slspencer.github.io/Katuunko/index.html)
 
 ## Screenshot/Video
 ![./docs/screenshot.PNG](./docs/screenshot.PNG?raw=true)
@@ -30,12 +30,12 @@ Then i am present with the available local hotels options
 
 ## APIS
 Covid ActNow API: 
-![https://apidocs.covidactnow.org/#current-data-for-all-states-counties-or-metros](https://apidocs.covidactnow.org/#current-data-for-all-states-counties-or-metros)
+[https://apidocs.covidactnow.org/#current-data-for-all-states-counties-or-metros](https://apidocs.covidactnow.org/#current-data-for-all-states-counties-or-metros)
 Kayak Embedded Widget:
-![https://www.kayak.com/affiliate/widget-v2.js](https://www.kayak.com/affiliate/widget-v2.js)
+[https://www.kayak.com/affiliate/widget-v2.js](https://www.kayak.com/affiliate/widget-v2.js)
 
 ## CSS Framework
-![Bulma](https://bulma.io/)
+[Bulma](https://bulma.io/)
 
 ## Functional Requirements
 Must use at least two server-side APIs
